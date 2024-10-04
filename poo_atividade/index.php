@@ -69,8 +69,8 @@
     }
 
        
-        $loja1 = new Lojas("NIKE  LOJA-OFICIAL", "Avenida Itaquera n:280", "(11) 70707-07070", "08:00-19:00");    // objeto da classe loja
-        $loja2 = new Lojas("ADIDAS BRASIL", "Avenida Corinthians Itaquera n:1910", "(11) 55966-07070", "08:00-19:00");
+        $loja1 = new Lojas("NIKE  LOJA-OFICIAL", "Avenida Itaquera n:280", "(11) 08000-55555", "08:00-19:00");    // objeto da classe loja
+        $loja2 = new Lojas("ADIDAS BRASIL", "Avenida Corinthians Itaquera n:1910", "(11) 55966-09091", "08:00-19:00");
 
         
         $loja1->exibirInformacoes();    // método para exibir as informações da loja
