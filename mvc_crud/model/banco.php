@@ -40,16 +40,16 @@
         }
 
         public function deleteLivro($id) {
-            if ($this->mysqli->query("DELETE FROM 'livros' WHERE 'nome' = '".$id."';")== TRUE) {
+            if ($this->mysqli->query("DELETE FROM `livros` WHERE `nome` = '".$id."';")== TRUE) {
                 return true;
             }else {
                  return false;
             }
         }
 
-        public function updateLivro($nome,$autor,$quantidade,$preco,$flag,$data,$id){
-            $stmt = $this->mysqli->prepare("UPDATE 'livros' SET 'nome' = ?, 'autor' =?.'quantidade' =?, 'preco' =?, 'flag'=?, 'data'=? WHERE 'nome' =?");
-           $stmt->bind_param("sssssss",$nome,$autor,$quantidade,$preco,$flag,$data,$id);
+        public function updateLivro($nome,$autor,$quantidade,$preco,$data,$flag,$id){
+            $stmt = $this->mysqli->prepare("UPDATE `livros` SET `nome` = ?, `autor` =?, `quantidade` =?, `preco` =?, `flag`=?, `data`=? WHERE `nome` =?");
+           $stmt->bind_param("sssssss",$nome,$autor,$quantidade,$preco,$data,$flag,$id);
            if ($stmt->execute()==TRUE) {
             return true;
            }else{

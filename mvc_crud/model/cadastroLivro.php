@@ -19,7 +19,7 @@
         }
 
         public function setQuantidade($string){
-            $this->Quantidade = $string;
+            $this->quantidade = $string;
         }
 
         public function setPreco($string){

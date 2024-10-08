@@ -58,11 +58,10 @@ class editarController {
     public function getFlag(){
         return $this->flag;
     }
-
-    $id = filter_input(INPUT_GET, 'id');
-    $editar = new editarController($id);
-    if(isseet($_POST['submit'])) {
-        $editar->editarFormulario($_POST['nome'],$_POST['autor'],$_POST['quantidade'],$_POST['preco'],$_POST['data'],$_POST['flag'],$_POST['id']);
-    }
+}
+$id = filter_input(INPUT_GET, 'id');
+$editar = new editarController($id);
+if(isset($_POST['submit'])) {
+    $editar->editarFormulario($_POST['nome'],$_POST['autor'],$_POST['quantidade'],$_POST['preco'],$_POST['data'],$_POST['flag'],$_POST['id']);
 }
 ?>
