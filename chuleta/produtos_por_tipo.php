@@ -1,9 +1,9 @@
-<!-- CONECTAR NO BANCO E SELECIONAR AS INFORMAÇÕES -->
-<?php
+<!-- CONECTAR COM O BANCO E SELECIONAR AS INFORMAÇÕES -->
+<?php 
 include 'conn/connect.php';
 $idTipo = $_GET['id_tipo'];
 $rotulo = $_GET['rotulo'];
-$listaPOrTipo = $conn->query('select *from produtos where tipo_id ='.$idTipo);
+$listaPorTipo = $conn->query('select * from vw_produtos where tipo_id ='. $idTipo);
 $rowPorTipo = $listaPorTipo->fetch_assoc();
 $numLinhas = $listaPorTipo->num_rows;
 ?>
@@ -24,18 +24,16 @@ $numLinhas = $listaPorTipo->num_rows;
     <div class="container">
 
 <!-- Mostrar se a consulta retornar vazio -->
-<?php if ($numLinhas == 0) { ?>
-
+<?php if($numLinhas == 0){ ?>
     <h2 class="breadcrumb alert-danger">
         <a href="javascript:window.history.go(-1)" class="btn btn-danger">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
         Não há produtos cadastrados tipo <?php echo $rotulo; ?>
     </h2>
-<?php } ?>
-
+<?php }?>
 <!-- mostrar se a consulta retornou produtos -->
-<?php if ($numLinhas > 0) { ?>
+<?php if($numLinhas > 0){ ?>
     <h2 class="breadcrumb alert-danger">
         <a href="javascript:window.history.go(-1)" class="btn btn-danger">
             <span class="glyphicon glyphicon-chevron-left"></span>
@@ -43,28 +41,27 @@ $numLinhas = $listaPorTipo->num_rows;
         <strong><?php echo $rotulo; ?></strong>
     </h2>
     <div class="row">
-        <!-- COMEÇO DO LAÇO -->
         <?php do{ ?>
             <div class="col-sm-6 col-md-4 ">
                 <div class="thumbnail ">
-                   <a href="produto_detalhes.php?id=<?php echo $rowPorTipo['id'] ?>"> <!-- ID -->
-                       <img src="images/ <?php echo $rowPorTipo['imagem'] ?>" alt="" class="img-responsive img-rounded"> 
+                   <a href="produto_detalhes.php?id=<?php echo $rowPorTipo['id'] ?>">
+                       <img src="images/<?php echo $rowPorTipo['imagem'] ?>" alt="" class="img-responsive img-rounded"> 
                    </a> 
                   <div class="caption text-right bg-success"> 
                     <h3 class="text-danger">
-                        <strong> <?php echo $rowPorTipo['descricao'] ?> <!-- DESCRIÇÃO --></strong>
+                        <strong><?php echo $rowPorTipo['descricao'] ?></strong>
                     </h3>
                     <p class="text-warning">
-                        <strong> <?php echo $rowPorTipo['rotulo'] ?><!-- RÓTULO --></strong>
+                        <strong><?php echo $rowPorTipo['rotulo'] ?></strong>
                     </p>
                     <p class="text-left">
-                        <?php echo mb_strimwidth($rowPorTipo['resumo'],0,42,'...'); ?><!-- RESUMO -->
+                        <?php echo mb_strimwidth($rowPorTipo['resumo'],0,42,'...'); ?>
                     </p>
                     <p>
                         <button class="btn btn-default disabled" role="button" style="cursor: default;">
-                            <?php echo "R$ ".number_format($rowPorTipo['valor'],2,',','.') ?><!-- VALOR -->
+                            <?php echo "R$ ".number_format($rowPorTipo['valor'],2,',','.') ?>
                         </button>
-                        <a href="produto_detalhes.php?id= <?php echo $rowPorTipo['id']; ?>"><!-- ID -->
+                        <a href="produto_detalhes.php?id=<?php echo $rowPorTipo['id']; ?>">
                             <span class="hidden-xs">Saiba mais..</span>
                             <span class="hidden-xs glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                         </a>
@@ -73,12 +70,10 @@ $numLinhas = $listaPorTipo->num_rows;
                 </div>
                 
             </div>
-        <!-- FIM DO LAÇO -->
         <?php }while($rowPorTipo = $listaPorTipo->fetch_assoc()); ?>
     </div>
+
 <?php } ?>
-
-
 
 </main>
 </body>
